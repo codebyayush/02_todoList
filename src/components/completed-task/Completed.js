@@ -1,15 +1,9 @@
 "use client";
 import ItemContext from "@/context/ItemContext";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
-const AllTask = (props) => {
-  const { tasks } = props;
-
+const Completed = () => {
   const ctx = useContext(ItemContext);
-
-  useEffect(() => {
-    ctx.addAll(tasks);
-  }, [tasks]);
 
   const deleteHandler = async (id) => {
     const resp = await fetch(`http://localhost:3000/api/tasks/${id}`, {
@@ -67,8 +61,8 @@ const AllTask = (props) => {
     <>
       <div className="flex justify-center">
         <div className="rounded-md p-4 m-2 w-1/2 bg-fuchsia-200 shadow-xl">
-          <h1 className="font-bold text-3xl italic text-gray-600 text-center mb-10">
-            Tasks
+        <h1 className="font-bold italic text-3xl text-gray-600 text-center mb-10">
+            Completed Tasks
           </h1>
           {ctx.taskArr.length == 0 ? (
             <p className="font-bold text-2xl text-center text-red-600">
@@ -77,35 +71,41 @@ const AllTask = (props) => {
           ) : (
             ctx.taskArr.map((task) => (
               <div key={task._id}>
-                {!task.checked ? (
-                  <div className="flex justify-between mt-2">
-                    <div className="flex">
-                      <div className="mt-2">
-                        <label className="rounded-full">
-                          <input
-                            type="checkbox"
-                            id="taskCheckbox"
-                            checked={false} // Set to true for checked tasks
-                            onClick={() => checkboxHandler(task)}
-                          />
-                        </label>
+                {task.checked ? (
+                  <>
+                    <div className="flex justify-between mt-2">
+                      <div className="flex">
+                        <div className="mt-2">
+                          <label className="rounded-full">
+                            <input
+                              type="checkbox"
+                              id="taskCheckbox"
+                              checked={true}
+                              onClick={() => checkboxHandler(task)}
+                            />
+                          </label>
+                        </div>
+                        <div className="ms-2">
+                          <p className="font-medium line-through">
+                            {task.task}
+                          </p>
+                          <p className="text-xs line-through">
+                            {task.description}
+                          </p>
+                        </div>
                       </div>
-                      <div className="ms-2">
-                        <p className="font-medium">{task.task}</p>
-                        <p className="text-xs">{task.description}</p>
+                      <div>
+                        <button
+                          className="bg-red-500 text-white p-2 font-normal rounded-md"
+                          onClick={() => deleteHandler(task._id)}
+                        >
+                          Delete
+                        </button>
                       </div>
                     </div>
-                    <div>
-                      <button
-                        className="bg-red-500 text-white p-2 font-normal rounded-md"
-                        onClick={() => deleteHandler(task._id)}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </div>
+                  </>
                 ) : null}
-                {!task.checked && (
+                {task.checked && (
                   <hr className="rounded-md mt-2 border-gray-500" />
                 )}
               </div>
@@ -117,4 +117,4 @@ const AllTask = (props) => {
   );
 };
 
-export default AllTask;
+export default Completed;

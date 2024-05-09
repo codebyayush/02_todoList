@@ -18,16 +18,10 @@ const fetchTask = async () => {
 
 const page = async () => {
   const alltask = await fetchTask();
-  const bgUrl = 'https://source.unsplash.com/pcpsVsyFp_s';
 
   return (
     <>
-      <div
-        style={{ backgroundImage: `url(${bgUrl})`, backgroundSize: "cover" }}
-        className="h-screen"
-      >
-        <AllTask tasks={alltask} />
-      </div>
+      <AllTask tasks={alltask} />
     </>
   );
 };

@@ -11,9 +11,25 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const bgUrl = 'https://source.unsplash.com/pcpsVsyFp_s';
+
   return (
     <html lang="en">
-      <body className={inter.className}><CtxProvider><Layout>{children}</Layout></CtxProvider></body>
+      <body className={inter.className}>
+        <CtxProvider>
+          <Layout>
+            <div
+              style={{
+                backgroundImage: `url(${bgUrl})`,
+                backgroundSize: "cover",
+              }}
+              className="h-screen"
+            >
+              {children}
+            </div>
+          </Layout>
+        </CtxProvider>
+      </body>
     </html>
   );
 }

@@ -19,13 +19,10 @@ const postTodo = async (taskObj) => {
 }
 
 export default function Home() {
-  const bgUrl = 'https://source.unsplash.com/pcpsVsyFp_s';
 
   return (
     <>  
-        <div style={{backgroundImage: `url(${bgUrl})`, backgroundSize: 'cover'}} className="h-screen">
-            <TodoForm addTask={postTodo}/>
-        </div>
+        <TodoForm addTask={postTodo}/>
     </>
   );
 }
