@@ -65,9 +65,9 @@ const AllTask = (props) => {
 
   return (
     <>
-      <div className="flex justify-center h-80">
+      <div className="flex justify-center">
           
-          <div className="rounded-md p-4 m-2 mt-auto w-1/2 bg-fuchsia-200 shadow-xl">
+          <div className="rounded-md p-4 m-2 w-1/2 bg-fuchsia-200 shadow-xl">
             {ctx.taskArr.length == 0 ? (
               <p className="font-bold text-2xl text-center text-red-600">
                 No Task to Show...
