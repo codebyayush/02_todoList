@@ -24,9 +24,9 @@ const TodoForm = (props) => {
   };
 
   return (
-    <div className="flex justify-center ">
+    <div className="flex justify-center h-80">
       <form
-        className=" rounded-md p-4 mt-2 max-w-lg w-1/3 min-w-80 bg-fuchsia-200 shadow-xl"
+        className=" rounded-md p-4 w-1/2 mt-auto bg-fuchsia-200 shadow-xl"
         onSubmit={submitHandler}
       >
         <label htmlFor="task">Task</label>
